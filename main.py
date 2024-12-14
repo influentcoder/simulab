@@ -18,6 +18,11 @@ def levy_flight(n_steps):
     steps = np.random.standard_cauchy(size=n_steps)
     return np.cumsum(steps)
 
+# Function to simulate Brownian motion
+def brownian_motion(n_steps):
+    steps = np.random.normal(loc=0, scale=1, size=n_steps)
+    return np.cumsum(steps)
+
 # Function to update the plot
 def update(val):
     n_steps = int(slider.val)
@@ -28,6 +33,8 @@ def update(val):
         walk = gaussian_random_walk(n_steps)
     elif algorithm == 'Levy':
         walk = levy_flight(n_steps)
+    elif algorithm == 'Brownian':
+        walk = brownian_motion(n_steps)
     line.set_xdata(np.arange(n_steps))
     line.set_ydata(walk)
     ax.relim()
@@ -52,7 +59,7 @@ slider.on_changed(update)
 
 # Add radio buttons for selecting the algorithm
 ax_radio = plt.axes([0.1, 0.05, 0.8, 0.1])
-radio = RadioButtons(ax_radio, ('Simple', 'Gaussian', 'Levy'))
+radio = RadioButtons(ax_radio, ('Simple', 'Gaussian', 'Levy', 'Brownian'))
 radio.on_clicked(update)
 
 # Show the plot
