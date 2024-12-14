@@ -47,8 +47,8 @@ initial_steps = 100
 # Create initial random walk
 walk = simple_random_walk(initial_steps)
 
-# Create a figure and axis
-fig, ax = plt.subplots()
+# Create a figure and axis with a larger size
+fig, ax = plt.subplots(figsize=(15, 12))
 plt.subplots_adjust(left=0.1, bottom=0.35)
 line, = ax.plot(np.arange(initial_steps), walk, lw=2)
 
